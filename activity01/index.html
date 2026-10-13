@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flavor Theory — Explore the Art of Good Food</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="container my-4">
+        <nav class="navbar navbar-expand-lg nav-glass px-4 py-3 rounded-4">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <div class="wordmark fs-4">Flavor<span>Theory</span></div>
+            </a>
+            <div class="ms-auto d-none d-lg-flex align-items-center gap-4">
+                <a href="#" class="text-dark text-decoration-none fw-medium">Home</a>
+                <a href="#bento-section" class="text-muted text-decoration-none fw-medium">Collections</a>
+                <a href="#masterclass" class="text-muted text-decoration-none fw-medium">Tips</a>
+                <a href="#about" class="text-muted text-decoration-none fw-medium">About</a>
+                <div class="bg-white px-3 py-1 rounded-pill border d-flex align-items-center gap-2 text-muted small shadow-sm">
+                    <span>Chef Portal</span>
+                    <i class="fa-solid fa-circle-user fs-5 text-secondary"></i>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="container my-5">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <span class="badge badge-terracotta mb-3">Recipe Discovery Platform</span>
+                <h1 class="display-4 fw-bold font-serif mb-3 text-deep-charcoal" style="letter-spacing: -1px; line-height: 1.15;">
+                    Find your next <span class="text-olive fst-italic">favorite dish.</span>
+                </h1>
+                <p class="text-muted lead mb-4" style="font-size: 1.05rem;">
+                    Discover delicious recipes, learn easy cooking tips, and find inspiration for your everyday meals.
+                </p>
+                <div class="input-group search-box p-1 bg-white rounded-pill border shadow-sm" style="max-width: 480px;">
+                    <input type="text" class="form-control border-0 rounded-pill px-3 shadow-none bg-transparent" placeholder="Search recipe or ingredient...">
+                    <button class="btn btn-dark rounded-pill px-4 fw-medium" type="button">Search</button>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="bento-card p-3 bg-white shadow-sm border">
+                    <img src="https://cdn.sanity.io/images/f3knbc2s/production/b5c621e55f680cdb059ccbfa2b1a4f8655d17814-2500x1500.jpg" alt="Culinary Spread" class="w-100 rounded-4 object-fit-cover" style="height: 240px;">
+                    <div class="mt-3 px-2 pb-2">
+                        <span class="badge badge-category mb-1">Featured</span>
+                        <h5 class="font-serif mb-0 fw-bold">Pork Sinigang</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Bento Grid Section -->
+    <main class="container my-5" id="bento-section">
+        <div class="mb-5">
+            <span class="badge badge-category mb-2">Curated Discovery</span>
+            <h2 class="font-serif display-6 fw-bold">Categories & Guides</h2>
+            <p class="text-muted">Find recipes and kitchen tips.</p>
+        </div>
+
+        <div class="row g-4">
+            
+            <!-- Bento Item 1: Featured Recipe (Large - Col 8) -->
+            <div class="col-lg-8">
+                <div class="bento-card p-4 p-md-5 bg-white shadow-sm h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge badge-terracotta"><i class="fa-solid fa-star me-1"></i> Recipe of the Day</span>
+                            <span class="small text-muted fw-semibold">Freshly Cooked</span>
+                        </div>
+                        <div class="row align-items-center g-4">
+                            <div class="col-md-6">
+                                <div class="overflow-hidden rounded-4 shadow-sm" style="height: 210px;">
+                                    <img src="https://www.foxyfolksy.com/wp-content/uploads/2014/03/chicken-adobo-1.jpg" alt="Chicken Adobo" class="w-100 h-100 object-fit-cover">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="badge badge-category mb-2">Filipino • Dinner</span>
+                                <h3 class="font-serif fw-bold fs-3 mb-2">Classic Chicken Adobo</h3>
+                                <p class="text-muted small mb-3">Tender chicken simmered in a perfect blend of soy sauce, vinegar, garlic, and spices.</p>
+                                <div class="d-flex align-items-center gap-3 text-muted small">
+                                    <span><i class="fa-regular fa-clock me-1 text-olive"></i> 1 Hour</span>
+                                    <span><i class="fa-solid fa-gauge-high me-1 text-olive"></i> Easy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bento Item 2: Categories (Small - Col 4) -->
+            <div class="col-lg-4">
+                <div class="bento-card p-4 bg-soft-neutral h-100">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <h4 class="font-serif fs-5 mb-0 fw-bold"><i class="fa-solid fa-layer-group text-olive me-2"></i>Meal Types</h4>
+                        <span class="badge bg-white text-secondary border">5 Types</span>
+                    </div>
+                    <p class="text-muted small mb-3">Choose the type of meal you want to cook today.</p>
+                    
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                        <span class="filter-pill">Breakfast</span>
+                        <span class="filter-pill">Lunch</span>
+                        <span class="filter-pill">Dinner</span>
+                        <span class="filter-pill">Desserts</span>
+                        <span class="filter-pill">Drinks</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bento Item 3: Popular Favorites (Medium - Col 4) -->
+            <div class="col-lg-4">
+                <div class="bento-card p-4 bg-white h-100">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <span class="badge badge-terracotta"><i class="fa-solid fa-fire me-1"></i> Trending</span>
+                        <span class="small text-muted">Popular</span>
+                    </div>
+                    <div class="overflow-hidden rounded-3 mb-3" style="height: 140px;">
+                        <img src="https://www.melinarecipes.com/wp-content/uploads/2026/01/elimkydu00gqlgxnadoq.webp" alt="Carbonara" class="w-100 h-100 object-fit-cover">
+                    </div>
+                    <h5 class="font-serif fw-bold fs-6 mb-1">Creamy Carbonara</h5>
+                    <p class="text-muted small mb-0">Delicious pasta tossed in a creamy sauce with bacon and cheese.</p>
+                </div>
+            </div>
+
+            <!-- Bento Item 4: Kitchen Tips (Medium - Col 4) -->
+            <div class="col-lg-4" id="masterclass">
+                <div class="bento-card p-4 h-100 d-flex flex-column justify-content-between tip-bento-card">
+                    <div>
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span class="badge badge-terracotta bg-white shadow-sm px-3 py-2"><i class="fa-solid fa-lightbulb me-1"></i> Kitchen Tip</span>
+                        </div>
+                        <h4 class="font-serif fs-5 fw-bold mb-2 text-dark">Resting Meat</h4>
+                        <p class="text-dark small mb-0" style="line-height: 1.6; font-size: 0.95rem !important;">Let cooked meat rest for a few minutes before slicing to keep it tender and juicy.</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-top border-subtle small text-olive fw-bold">
+                        <span>Read Guide &rarr;</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bento Item 5: Regional Cuisines (Medium - Col 4) -->
+            <div class="col-lg-4">
+                <div class="bento-card p-4 bg-soft-neutral h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <h4 class="font-serif fs-5 mb-2 fw-bold"><i class="fa-solid fa-earth-americas text-olive me-2"></i>Global Cuisines</h4>
+                        <p class="text-muted small mb-3">Explore dishes inspired by different cultures.</p>
+                    </div>
+                    <div class="d-flex flex-column gap-2 pt-1">
+                        <div class="p-3 rounded-3 bg-white border d-flex justify-content-between align-items-center small shadow-sm">
+                            <span class="fw-semibold">Filipino Recipes</span>
+                            <span class="badge bg-light text-dark">4 Recipes</span>
+                        </div>
+                        <div class="p-3 rounded-3 bg-white border d-flex justify-content-between align-items-center small shadow-sm">
+                            <span class="fw-semibold">Italian Recipes</span>
+                            <span class="badge bg-light text-dark">2 Recipes</span>
+                        </div>
+                        <div class="p-3 rounded-3 bg-white border d-flex justify-content-between align-items-center small shadow-sm">
+                            <span class="fw-semibold">Japanese Recipes</span>
+                            <span class="badge bg-light text-dark">1 Recipe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="container my-5" id="about">
+        <div class="nav-glass p-4 px-md-5 rounded-4 text-center text-md-start d-md-flex justify-content-between align-items-center shadow-sm">
+            <div>
+                <div class="wordmark fs-5 mb-1">Flavor<span>Theory</span></div>
+                <p class="text-muted small mb-0">Activity #1: Responsive Bento Layout Website.</p>
+            </div>
+            <div class="text-muted small mt-3 mt-md-0 fw-medium">
+                &copy; 2026 Flavor Theory. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

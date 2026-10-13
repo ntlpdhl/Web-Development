@@ -1,0 +1,92 @@
+:root {
+    --bg-warm-ivory: #F4F0E8;
+    --text-deep-charcoal: #292B23;
+    --olive-green: #697354;
+    --olive-dark: #535c42;
+    --terracotta: #B86F50;
+    --card-surface: #FFFFFF;
+    --card-surface-soft: #FAF8F5;
+    --border-subtle: #E6E1D6;
+}
+
+body {
+    background-color: var(--bg-warm-ivory);
+    color: var(--text-deep-charcoal);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+.wordmark {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--text-deep-charcoal);
+    letter-spacing: -0.5px;
+}
+.wordmark span {
+    color: var(--terracotta);
+}
+
+/* Glassmorphism Navigation */
+.nav-glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(230, 225, 214, 0.8);
+    box-shadow: 0 10px 30px 0 rgba(41, 43, 35, 0.04);
+}
+
+/* Bento Card Styling */
+.bento-card {
+    background-color: var(--card-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 1.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(41, 43, 35, 0.07);
+}
+
+/* Special styling for Kitchen Tip card to fix readability */
+.tip-bento-card {
+    background: linear-gradient(135deg, #FDF7F2 0%, #F3E6D8 100%) !important;
+    border: 1px solid #E5D5C3 !important;
+}
+
+/* Badges & Filter Pills */
+.badge-category {
+    background-color: rgba(105, 115, 84, 0.12);
+    color: var(--olive-green);
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 50rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.badge-terracotta {
+    background-color: rgba(184, 111, 80, 0.15);
+    color: #9A5437;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 50rem;
+    letter-spacing: 0.3px;
+}
+.filter-pill {
+    background: var(--card-surface);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-deep-charcoal);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.bg-soft-neutral { background-color: var(--card-surface-soft); }
+.text-olive { color: var(--olive-green); }
+.text-terracotta { color: var(--terracotta); }
