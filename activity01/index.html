@@ -49,7 +49,7 @@
                 </p>
                 <div class="input-group search-box p-1 bg-white rounded-pill border shadow-sm" style="max-width: 480px;">
                     <input type="text" class="form-control border-0 rounded-pill px-3 shadow-none bg-transparent" placeholder="Search recipe or ingredient...">
-                    <button class="btn btn-dark rounded-pill px-4 fw-medium" type="button">Search</button>
+                    <button class="btn btn-dark rounded-pill px-4 fw-medium" type="button" style="background-color: var(--olive-dark); border: none;">Search</button>
                 </div>
             </div>
             <div class="col-lg-5">
@@ -72,108 +72,136 @@
             <p class="text-muted">Find recipes and kitchen tips.</p>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 align-items-start">
             
-            <!-- Bento Item 1: Featured Recipe (Large - Col 8) -->
-            <div class="col-lg-8">
-                <div class="bento-card p-4 p-md-5 bg-white shadow-sm h-100 d-flex flex-column justify-content-between">
-                    <div>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="badge badge-terracotta"><i class="fa-solid fa-star me-1"></i> Recipe of the Day</span>
-                            <span class="small text-muted fw-semibold">Freshly Cooked</span>
+            <!-- LEFT COLUMN (Col-lg-8) -->
+            <div class="col-lg-8 d-flex flex-column gap-4">
+                
+                <!-- 1. Recipe of the Day -->
+                <div class="bento-card p-4 p-md-5 bg-white shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="badge badge-terracotta"><i class="fa-solid fa-star me-1"></i> Recipe of the Day</span>
+                        <button class="btn btn-light rounded-circle p-0 border shadow-sm d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;" type="button">
+                            <i class="fa-regular fa-bookmark text-secondary"></i>
+                        </button>
+                    </div>
+                    <div class="row align-items-center g-4">
+                        <div class="col-md-6">
+                            <div class="overflow-hidden rounded-4 shadow-sm" style="height: 210px;">
+                                <img src="https://www.foxyfolksy.com/wp-content/uploads/2014/03/chicken-adobo-1.jpg" alt="Chicken Adobo" class="w-100 h-100 object-fit-cover">
+                            </div>
                         </div>
-                        <div class="row align-items-center g-4">
+                        <div class="col-md-6">
+                            <span class="badge badge-category mb-2">FILIPINO • DINNER</span>
+                            <h3 class="font-serif fw-bold fs-3 mb-2">Chicken Adobo</h3>
+                            <p class="text-muted small mb-3">The quintessential Filipino comfort dish featuring tender chicken simmered in soy sauce, vinegar, garlic, and bay leaves.</p>
+                            <div class="d-flex align-items-center gap-3 text-muted small mb-3">
+                                <span><i class="fa-regular fa-clock me-1 text-olive"></i> 1 hr</span>
+                                <span><i class="fa-solid fa-gauge-high me-1 text-olive"></i> Easy</span>
+                                <span><i class="fa-solid fa-star text-warning me-1"></i> 4.9</span>
+                            </div>
+                            <a href="#" class="btn text-white btn-sm rounded-pill px-4 py-2 fw-medium" style="background-color: var(--olive-green);">View Recipe</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Popular Favorites -->
+                <div class="bento-card p-4 bg-white shadow-sm d-flex flex-column justify-content-between" style="min-height: 380px;">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h4 class="font-serif fs-5 mb-0 fw-bold d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-fire text-terracotta"></i> Popular Favorites
+                            </h4>
+                            <a href="#" class="text-dark text-decoration-none small fw-semibold">View All <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                        </div>
+                        <div class="row g-3">
+                            <!-- Card 1: Carbonara -->
                             <div class="col-md-6">
-                                <div class="overflow-hidden rounded-4 shadow-sm" style="height: 210px;">
-                                    <img src="https://www.foxyfolksy.com/wp-content/uploads/2014/03/chicken-adobo-1.jpg" alt="Chicken Adobo" class="w-100 h-100 object-fit-cover">
+                                <div class="border rounded-4 p-2 bg-soft-neutral">
+                                    <div class="position-relative overflow-hidden rounded-3 mb-2" style="height: 130px;">
+                                        <img src="https://www.melinarecipes.com/wp-content/uploads/2026/01/elimkydu00gqlgxnadoq.webp" alt="Carbonara" class="w-100 h-100 object-fit-cover">
+                                        <span class="position-absolute top-0 end-0 m-2 badge bg-dark bg-opacity-75 text-white small fw-normal">25 mins</span>
+                                    </div>
+                                    <div class="px-2 pb-1">
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary mb-1" style="font-size: 0.7rem; font-weight: 700;">DINNER</span>
+                                        <h5 class="font-serif fw-bold fs-6 mb-1">Creamy Carbonara</h5>
+                                        <p class="text-muted small mb-0 text-truncate" style="font-size: 0.8rem !important;">Authentic Roman pasta made with crispy guanciale...</p>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- Card 2: Mango Float -->
                             <div class="col-md-6">
-                                <span class="badge badge-category mb-2">Filipino • Dinner</span>
-                                <h3 class="font-serif fw-bold fs-3 mb-2">Classic Chicken Adobo</h3>
-                                <p class="text-muted small mb-3">Tender chicken simmered in a perfect blend of soy sauce, vinegar, garlic, and spices.</p>
-                                <div class="d-flex align-items-center gap-3 text-muted small">
-                                    <span><i class="fa-regular fa-clock me-1 text-olive"></i> 1 Hour</span>
-                                    <span><i class="fa-solid fa-gauge-high me-1 text-olive"></i> Easy</span>
+                                <div class="border rounded-4 p-2 bg-soft-neutral">
+                                    <div class="position-relative overflow-hidden rounded-3 mb-2" style="height: 130px;">
+                                        <img src="https://sweetsimplevegan.com/wp-content/uploads/2024/09/vegan-filipino-mango-float-recipe-sweet-simple-vegan-6.jpg" alt="Mango Float" class="w-100 h-100 object-fit-cover">
+                                        <span class="position-absolute top-0 end-0 m-2 badge bg-dark bg-opacity-75 text-white small fw-normal">4 hrs (Chilling)</span>
+                                    </div>
+                                    <div class="px-2 pb-1">
+                                        <span class="badge bg-secondary bg-opacity-10 text-secondary mb-1" style="font-size: 0.7rem; font-weight: 700;">DESSERTS</span>
+                                        <h5 class="font-serif fw-bold fs-6 mb-1">Mango Float</h5>
+                                        <p class="text-muted small mb-0 text-truncate" style="font-size: 0.8rem !important;">A beloved Filipino icebox cake layered with graham...</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Bento Item 2: Categories (Small - Col 4) -->
-            <div class="col-lg-4">
-                <div class="bento-card p-4 bg-soft-neutral h-100">
-                    <div class="d-flex align-items-center justify-content-between mb-2">
-                        <h4 class="font-serif fs-5 mb-0 fw-bold"><i class="fa-solid fa-layer-group text-olive me-2"></i>Meal Types</h4>
-                        <span class="badge bg-white text-secondary border">5 Types</span>
-                    </div>
-                    <p class="text-muted small mb-3">Choose the type of meal you want to cook today.</p>
-                    
-                    <div class="d-flex flex-wrap gap-2 mt-3">
+            <!-- RIGHT COLUMN (Col-lg-4) -->
+            <div class="col-lg-4 d-flex flex-column gap-4">
+                
+                <!-- 3. Explore Categories -->
+                <div class="bento-card p-4 bg-white shadow-sm">
+                    <h4 class="font-serif fs-5 mb-3 fw-bold">Explore Categories</h4>
+                    <div class="d-flex flex-wrap gap-2">
                         <span class="filter-pill">Breakfast</span>
                         <span class="filter-pill">Lunch</span>
                         <span class="filter-pill">Dinner</span>
                         <span class="filter-pill">Desserts</span>
+                        <span class="filter-pill">Snacks</span>
                         <span class="filter-pill">Drinks</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Bento Item 3: Popular Favorites (Medium - Col 4) -->
-            <div class="col-lg-4">
-                <div class="bento-card p-4 bg-white h-100">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <span class="badge badge-terracotta"><i class="fa-solid fa-fire me-1"></i> Trending</span>
-                        <span class="small text-muted">Popular</span>
+                <!-- 4. Tip of the Day -->
+                <div class="bento-card p-4 tip-bento-card shadow-sm" id="masterclass">
+                    <div class="d-flex align-items-center gap-2 mb-2 text-muted small fw-semibold">
+                        <i class="fa-solid fa-lightbulb text-warning"></i> Tip of the Day
                     </div>
-                    <div class="overflow-hidden rounded-3 mb-3" style="height: 140px;">
-                        <img src="https://www.melinarecipes.com/wp-content/uploads/2026/01/elimkydu00gqlgxnadoq.webp" alt="Carbonara" class="w-100 h-100 object-fit-cover">
-                    </div>
-                    <h5 class="font-serif fw-bold fs-6 mb-1">Creamy Carbonara</h5>
-                    <p class="text-muted small mb-0">Delicious pasta tossed in a creamy sauce with bacon and cheese.</p>
+                    <h4 class="font-serif fs-5 fw-bold mb-2 text-dark">Resting Meat Makes All the Difference</h4>
+                    <p class="text-dark opacity-75 small mb-0" style="line-height: 1.5; font-size: 0.9rem;">Always let cooked meats (like steaks or roasts) rest for 5–10 minutes before slicing to allow the juices to redistribute evenly throughout the cut.</p>
                 </div>
-            </div>
 
-            <!-- Bento Item 4: Kitchen Tips (Medium - Col 4) -->
-            <div class="col-lg-4" id="masterclass">
-                <div class="bento-card p-4 h-100 d-flex flex-column justify-content-between tip-bento-card">
+                <!-- 5. Browse by Cuisine -->
+                <div class="bento-card p-4 bg-white shadow-sm d-flex flex-column justify-content-between" style="min-height: 380px;">
                     <div>
-                        <div class="d-flex align-items-center gap-2 mb-3">
-                            <span class="badge badge-terracotta bg-white shadow-sm px-3 py-2"><i class="fa-solid fa-lightbulb me-1"></i> Kitchen Tip</span>
-                        </div>
-                        <h4 class="font-serif fs-5 fw-bold mb-2 text-dark">Resting Meat</h4>
-                        <p class="text-dark small mb-0" style="line-height: 1.6; font-size: 0.95rem !important;">Let cooked meat rest for a few minutes before slicing to keep it tender and juicy.</p>
+                        <h4 class="font-serif fs-5 mb-2 fw-bold d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-earth-americas text-olive"></i> Browse by Cuisine
+                        </h4>
+                        <p class="text-muted small mb-3">Travel the globe through our authentic regional collections.</p>
                     </div>
-                    <div class="mt-4 pt-3 border-top border-subtle small text-olive fw-bold">
-                        <span>Read Guide &rarr;</span>
+                    <div class="d-flex flex-column gap-2">
+                        <div class="p-2 px-3 rounded-3 border d-flex justify-content-between align-items-center small shadow-sm bg-white">
+                            <span class="fw-semibold">Filipino Cuisine</span>
+                            <i class="fa-solid fa-chevron-right text-muted small"></i>
+                        </div>
+                        <div class="p-2 px-3 rounded-3 border d-flex justify-content-between align-items-center small shadow-sm bg-white">
+                            <span class="fw-semibold">Japanese Cuisine</span>
+                            <i class="fa-solid fa-chevron-right text-muted small"></i>
+                        </div>
+                        <div class="p-2 px-3 rounded-3 border d-flex justify-content-between align-items-center small shadow-sm bg-white">
+                            <span class="fw-semibold">Italian Cuisine</span>
+                            <i class="fa-solid fa-chevron-right text-muted small"></i>
+                        </div>
+                        <div class="p-2 px-3 rounded-3 border d-flex justify-content-between align-items-center small shadow-sm bg-white">
+                            <span class="fw-semibold">American Cuisine</span>
+                            <i class="fa-solid fa-chevron-right text-muted small"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Bento Item 5: Regional Cuisines (Medium - Col 4) -->
-            <div class="col-lg-4">
-                <div class="bento-card p-4 bg-soft-neutral h-100 d-flex flex-column justify-content-between">
-                    <div>
-                        <h4 class="font-serif fs-5 mb-2 fw-bold"><i class="fa-solid fa-earth-americas text-olive me-2"></i>Global Cuisines</h4>
-                        <p class="text-muted small mb-3">Explore dishes inspired by different cultures.</p>
-                    </div>
-                    <div class="d-flex flex-column gap-2 pt-1">
-                        <div class="p-3 rounded-3 bg-white border d-flex justify-content-between align-items-center small shadow-sm">
-                            <span class="fw-semibold">Filipino Recipes</span>
-                            <span class="badge bg-light text-dark">4 Recipes</span>
-                        </div>
-                        <div class="p-3 rounded-3 bg-white border d-flex justify-content-between align-items-center small shadow-sm">
-                            <span class="fw-semibold">Italian Recipes</span>
-                            <span class="badge bg-light text-dark">2 Recipes</span>
-                        </div>
-                        <div class="p-3 rounded-3 bg-white border d-flex justify-content-between align-items-center small shadow-sm">
-                            <span class="fw-semibold">Japanese Recipes</span>
-                            <span class="badge bg-light text-dark">1 Recipe</span>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>
