@@ -1,11 +1,212 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <title>Tipid Meals - Student Recipes</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-</body>
+    <link rel="icon" type="image/svg+xml" href="assets/img/Tipid_Meals.svg" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg shadow-sm sticky-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="#">
+          <img src="assets/img/logo.png" alt="Tipid Meals Logo" height="38" class="me-2" />
+          <span>Tipid</span>Meals
+        </a>
+        <span class="navbar-text fw-medium d-none d-sm-inline-block">
+          🍳 Quick & Budget Student Recipes
+        </span>
+      </div>
+    </nav>
+
+    <header class="container my-4">
+      <div class="hero-banner p-4 p-md-5 text-center shadow-sm">
+        <img src="assets/img/logo.png" alt="Tipid Meals Logo" class="mb-3" style="max-height: 80px;" />
+        <h1 class="display-5 fw-bold mb-2">Student Meals</h1>
+        <p class="lead mb-0 text-secondary">
+          Delicious, tipid-friendly meals for busy college students using simple dorm & boarder ingredients!
+        </p>
+      </div>
+    </header>
+
+    <main class="container my-4">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="parent">
+
+      </div>
+    </main>
+
+    <footer class="py-4 text-center mt-5">
+      <div class="container">
+        <p class="mb-0 fw-medium">&copy; 2026 Tipid Meals | Web Development Activity #2</p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      var recipes = [
+        {
+          title: "Creamy Corned Beef Carbonara",
+          cost: "₱65.00",
+          prepTime: "12 mins",
+          ingredients: [
+            "1 canned corned beef (150g)",
+            "150g pasta (spaghetti or macaroni)",
+            "1/2 cup all-purpose cream or evaporated milk",
+            "1 tbsp butter or cooking oil",
+            "Garlic & onion (minced)"
+          ],
+          steps: [
+            "Boil pasta in salted water for 8 minutes and drain.",
+            "Sauté garlic, onion, and corned beef in butter for 3 minutes.",
+            "Pour cream, simmer for 1 minute, then toss in cooked pasta."
+          ]
+        },
+        {
+          title: "Sardines Misua Soup with Malunggay",
+          cost: "₱35.00",
+          prepTime: "10 mins",
+          ingredients: [
+            "1 can sardines in tomato sauce",
+            "1 pack misua noodles",
+            "1 cup water or rice wash",
+            "Handful of malunggay or dahon ng sili",
+            "Garlic, onion, and fish sauce (patis)"
+          ],
+          steps: [
+            "Sauté garlic and onion in a small pot.",
+            "Add sardines and 1 cup of water; bring to a boil.",
+            "Add misua and malunggay, season with patis, and simmer for 2 minutes."
+          ]
+        },
+        {
+          title: "Egg & Tofu Garlic Stir-Fry",
+          cost: "₱45.00",
+          prepTime: "15 mins",
+          ingredients: [
+            "2 blocks firm tofu (tokwa), cubed",
+            "2 eggs (beaten)",
+            "2 tbsp soy sauce + 1 tbsp oyster sauce",
+            "3 cloves garlic (crispy fried)",
+            "1 tbsp cooking oil"
+          ],
+          steps: [
+            "Pan-fry cubed tofu until golden brown and crisp.",
+            "Push tofu to the side, pour beaten eggs, and scramble lightly.",
+            "Mix in soy sauce, oyster sauce, and top generously with crispy garlic."
+          ]
+        },
+        {
+          title: "Spicy Tuna Mayo Rice Bowl",
+          cost: "₱50.00",
+          prepTime: "8 mins",
+          ingredients: [
+            "1 can canned tuna (drained)",
+            "2 tbsp mayonnaise",
+            "1 tsp sriracha or chili flakes",
+            "1 bowl warm cooked rice",
+            "Nori/seaweed strip or toasted sesame seeds"
+          ],
+          steps: [
+            "Mix drained tuna, mayonnaise, and chili sauce in a bowl.",
+            "Scoop warm rice into a serving bowl.",
+            "Top rice with the spicy tuna mixture and sprinkle seaweed or sesame."
+          ]
+        },
+        {
+          title: "Cheesy Egg Omelet over Rice",
+          cost: "₱30.00",
+          prepTime: "7 mins",
+          ingredients: [
+            "2 fresh eggs",
+            "1 slice eden/quickmelt cheese or grated cheese",
+            "1 tbsp chopped green onions or tomatoes",
+            "1 tsp oil or butter",
+            "Pinch of salt and pepper"
+          ],
+          steps: [
+            "Whisk eggs with salt, pepper, and chopped green onions.",
+            "Pour into a warm greased skillet and place cheese in the center.",
+            "Fold the omelet when set and serve immediately over hot rice."
+          ]
+        },
+        {
+          title: "Sautéed Ginisang Munggo (Express)",
+          cost: "₱40.00",
+          prepTime: "15 mins",
+          ingredients: [
+            "1 cup pre-boiled munggo (or quick-cook mungbean flakes)",
+            "1 cup spinach or dahon ng ampalaya",
+            "1/2 pack chicharon or crispy fried garlic",
+            "Garlic, onion, and tomato",
+            "1 cup water + fish sauce to taste"
+          ],
+          steps: [
+            "Sauté garlic, onion, and tomatoes until soft.",
+            "Add pre-cooked munggo and water; simmer for 5 minutes.",
+            "Stir in green leafy vegetables and crushed chicharon before serving."
+          ]
+        }
+      ];
+
+      var elParent = document.getElementById("parent");
+
+      for (var i = 0; i < recipes.length; i++) {
+
+        var ingredientsListHtml = "";
+        for (var j = 0; j < recipes[i].ingredients.length; j++) {
+          ingredientsListHtml += "<li>" + recipes[i].ingredients[j] + "</li>";
+        }
+
+        var stepsListHtml = "";
+        for (var k = 0; k < recipes[i].steps.length; k++) {
+          stepsListHtml += "<li>" + recipes[i].steps[k] + "</li>";
+        }
+
+        elParent.innerHTML +=
+          `<div class="col">
+            <div class="card h-100 p-3 shadow-sm rounded-4 recipe-card">
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <h3 class="h5 card-title fw-bold mb-0">` + recipes[i].title + `</h3>
+                  <span class="badge badge-prep rounded-pill px-2 py-1">⏱️ ` + recipes[i].prepTime + `</span>
+                </div>
+                
+                <p class="text-muted small mb-3">Est. Cost: <strong class="text-dark">` + recipes[i].cost + `</strong></p>
+
+                <div class="mb-3">
+                  <div class="recipe-section-title fw-bold text-uppercase mb-1">🛒 Ingredients</div>
+                  <ul class="ingredients-list ps-3 mb-0">` + ingredientsListHtml + `</ul>
+                </div>
+
+                <div class="mb-3 flex-grow-1">
+                  <div class="recipe-section-title fw-bold text-uppercase mb-1">👨‍🍳 Quick Steps</div>
+                  <ol class="steps-list mb-0">` + stepsListHtml + `</ol>
+                </div>
+
+                <div class="mt-auto pt-2">
+                  <button class="btn btn-orange w-100 rounded-3 btn-sm">Save Recipe</button>
+                </div>
+              </div>
+            </div>
+          </div>`;
+      }
+    </script>
+  </body>
 </html>
