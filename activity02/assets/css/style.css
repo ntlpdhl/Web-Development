@@ -1,0 +1,89 @@
+:root {
+  --bg-cream: #FFF9E8;
+  --yellow-accent: #FFE9A8;
+  --orange-highlight: #FFB21C;
+  --tomato-primary: #F47721;
+  --tomato-dark: #E94724;
+  --text-dark: #2D1810;
+}
+
+body {
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 3px solid var(--yellow-accent);
+}
+
+.navbar-brand span {
+  color: var(--tomato-primary);
+}
+
+.hero-banner {
+  background: linear-gradient(135deg, var(--yellow-accent) 0%, #FFF3C4 100%);
+  border-radius: 1.5rem;
+  border: 2px solid #F0D98A;
+}
+
+.hero-banner h1 {
+  color: var(--text-dark);
+}
+
+.recipe-card {
+  background-color: #ffffff;
+  border: 2px solid var(--yellow-accent);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(45, 24, 16, 0.12) !important;
+}
+
+.card-title {
+  color: var(--text-dark);
+}
+
+.badge-prep {
+  background-color: var(--yellow-accent);
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.recipe-section-title {
+  color: var(--tomato-dark);
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.ingredients-list li, .steps-list li {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+.steps-list ol {
+  padding-left: 1.2rem;
+}
+
+.btn-orange {
+  background-color: var(--orange-highlight);
+  color: var(--text-dark);
+  font-weight: 600;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-orange:hover {
+  background-color: var(--tomato-primary);
+  color: #ffffff;
+}
+
+footer {
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  border-top: 2px solid var(--yellow-accent);
+}
