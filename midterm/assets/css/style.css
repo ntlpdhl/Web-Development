@@ -1,36 +1,54 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+:root,
+[data-bs-theme=dark] {
+  --bs-body-bg: #0d0f1f;
+  --bs-body-bg-rgb: 13, 15, 31;
+  --bs-tertiary-bg: #171a33;
+  --bs-tertiary-bg-rgb: 23, 26, 51;
+  --bs-warning: #ff7a18;
+  --bs-warning-rgb: 255, 122, 24;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #121212;
-    color: #ffffff;
-    text-align: center;
+.modal-content { --bs-modal-bg: #171a33; }
+
+.btn-warning,
+.btn-outline-warning {
+  --bs-btn-color: #ff7a18;
+  --bs-btn-border-color: #ff7a18;
+  --bs-btn-hover-color: #111;
+  --bs-btn-hover-bg: #ff7a18;
+  --bs-btn-hover-border-color: #ff7a18;
+  --bs-btn-active-color: #111;
+  --bs-btn-active-bg: #ff7a18;
+  --bs-btn-active-border-color: #ff7a18;
 }
 
-.container {
-    padding: 2rem;
-    border-radius: 12px;
-    background-color: #1e1e1e;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    border: 1px solid #333;
+.btn-warning { --bs-btn-color: #111; --bs-btn-bg: #ff7a18; }
+
+.title-font {
+  font-family: 'Bangers', cursive;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0 #000;
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: #4facfe;
+.hero {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 122, 24, .35), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(230, 57, 70, .25), transparent 40%),
+    repeating-conic-gradient(from 0deg at 50% 120%, rgba(255, 255, 255, .03) 0 6deg, transparent 6deg 12deg),
+    #121533;
 }
 
-p {
-    font-size: 1.2rem;
-    color: #a0a0a0;
-    letter-spacing: 1px;
+.headband {
+  background: linear-gradient(#2b3a67, #1b2548);
+  border-color: #9fb0d8 !important;
+  font-family: 'Bangers', cursive;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+}
+
+.anime { transition: .2s; }
+.anime:hover {
+  transform: translateY(-6px);
+  border-color: #ff7a18;
+  box-shadow: 0 10px 25px rgba(255, 122, 24, .25) !important;
 }

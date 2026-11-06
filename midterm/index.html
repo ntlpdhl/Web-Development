@@ -1,17 +1,178 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midterm Output</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
 
-    <div class="container">
-        <h1>Midterm API Project</h1>
-        <p>Coming soon...</p>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bingo Book | Shinobi Registry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container-fluid hero text-center py-5 border-bottom border-warning border-4">
+    <span class="headband d-inline-block rounded px-4 py-1 border border-2">🍥 Konoha Archive</span>
+    <h1 class="display-2 text-warning my-3 title-font">The Bingo Book</h1>
+    <p class="text-secondary">Every shinobi on file. Search a name, then open their file.</p>
+
+    <div class="container" style="max-width: 600px;">
+      <div class="input-group input-group-lg shadow">
+        <input type="text" class="form-control rounded-start-pill ps-4" id="q"
+          placeholder="Search the registry: Itachi, Hinata, Gaara..." onkeydown="if(event.key=='Enter') search()">
+        <button class="btn btn-warning rounded-end-pill px-4" onclick="search()">Search</button>
+      </div>
     </div>
 
+    <div class="d-flex flex-wrap justify-content-center gap-2 mt-4" id="chips"></div>
+  </div>
+
+  <div class="container py-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+      <span class="text-secondary" id="count"></span>
+      <ul class="pagination mb-0">
+        <li class="page-item" id="prevItem"><a class="page-link" role="button" onclick="go(-1)">Previous</a></li>
+        <li class="page-item disabled"><a class="page-link" id="pageInfo">Page 1</a></li>
+        <li class="page-item" id="nextItem"><a class="page-link" role="button" onclick="go(1)">Next</a></li>
+      </ul>
+    </div>
+
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3" id="list"></div>
+  </div>
+
+  <div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content border-warning border-2 rounded-4">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+  <script>
+    const $ = id => document.getElementById(id);
+    const API = 'https://graphql.anilist.co';
+    const PER_PAGE = 20;
+
+    const colors = { MAIN: 'warning', SUPPORTING: 'info', BACKGROUND: 'secondary' };
+    const label = r => r[0] + r.slice(1).toLowerCase();
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    const QUERY = `
+      query ($page: Int) { a: Media(id: 20) { ...F } b: Media(id: 1735) { ...F } }
+      fragment F on Media {
+        characters(page: $page, perPage: 25, sort: [ROLE, FAVOURITES_DESC]) {
+          pageInfo { hasNextPage }
+          edges { role node { id name { full native } image { large } description gender age
+                  dateOfBirth { month day } bloodType favourites } }
+        }
+      }`;
+
+    let all = [], shown = [], cat = '', page = 1;
+
+    $('chips').innerHTML = ['All', 'MAIN', 'SUPPORTING', 'BACKGROUND'].map(r =>
+      `<button class="chip btn btn-outline-${colors[r] || 'light'} rounded-pill px-4 ${r == 'All' ? 'active' : ''}"
+        onclick="setCat('${r == 'All' ? '' : r}', this)">${r == 'All' ? r : label(r)}</button>`).join('');
+
+    function setCat(r, el) {
+      cat = r;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      search();
+    }
+
+    function search() { page = 1; render(); }
+
+    function go(n) {
+      page += n;
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    const load = async () => {
+      $('list').innerHTML = '<div class="col-12 text-center p-5"><div class="spinner-border text-warning"></div><div class="text-secondary mt-3">Pulling files from the archive...</div></div>';
+      try {
+        const map = new Map();
+        for (let p = 1, more = true; more; p++) {
+          const res = await fetch(API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({ query: QUERY, variables: { page: p } })
+          });
+          if (!res.ok) throw 0;
+          const { data } = await res.json();
+          more = false;
+          for (const m of [data.a, data.b]) {
+            m.characters.edges.forEach(e => map.has(e.node.id) || map.set(e.node.id, { ...e.node, role: e.role }));
+            more = more || m.characters.pageInfo.hasNextPage;
+          }
+        }
+        const order = { MAIN: 0, SUPPORTING: 1, BACKGROUND: 2 };
+        all = [...map.values()].sort((x, y) => order[x.role] - order[y.role] || y.favourites - x.favourites);
+        render();
+      } catch {
+        $('list').innerHTML = '<p class="text-center text-secondary p-5">Could not load data. Check your internet then refresh the page.</p>';
+      }
+    };
+
+    function render() {
+      const q = $('q').value.trim().toLowerCase();
+      const found = all.filter(c => (!cat || c.role == cat) && (c.name.full + ' ' + (c.name.native || '')).toLowerCase().includes(q));
+      const last = Math.max(1, Math.ceil(found.length / PER_PAGE));
+      shown = found.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+      $('list').innerHTML = shown.map((c, i) => `
+        <div class="col">
+          <div class="card anime h-100 shadow-sm" role="button" onclick="view(${i})">
+            <div class="ratio bg-body-tertiary" style="--bs-aspect-ratio: 140%;">
+              <img src="${c.image.large}" class="card-img-top object-fit-cover" loading="lazy" alt="">
+            </div>
+            <span class="badge text-bg-${colors[c.role]} position-absolute top-0 start-0 m-2">${label(c.role)}</span>
+            <div class="card-body p-2"><div class="small fw-medium">${c.name.full}</div></div>
+          </div>
+        </div>`).join('') || '<p class="text-center text-secondary p-5">No shinobi on file under that name.</p>';
+
+      $('count').textContent = found.length + ' shinobi on file';
+      $('pageInfo').textContent = `Page ${page} of ${last}`;
+      $('prevItem').classList.toggle('disabled', page <= 1);
+      $('nextItem').classList.toggle('disabled', page >= last);
+    }
+
+    function view(i) {
+      const c = shown[i], d = c.dateOfBirth || {};
+      const about = (c.description || '').replace(/~!.*?!~/gs, '').replace(/<br\s*\/?>/g, '\n')
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/https?:\/\/\S+/g, '').replace(/__|\*\*|<[^>]+>/g, '').trim();
+      const stat = (k, v) => v ? `<div class="col"><div class="bg-body-tertiary rounded p-2 small"><div class="text-secondary" style="font-size:.7rem">${k}</div>${v}</div></div>` : '';
+      $('modalBody').innerHTML = `
+        <div class="row g-4">
+          <div class="col-md-4 text-center">
+            <img src="${c.image.large}" class="img-fluid rounded-3" alt="">
+          </div>
+          <div class="col-md-8">
+            <span class="badge text-bg-${colors[c.role]}">${label(c.role)}</span>
+            <h2 class="text-warning title-font mt-2 mb-0">${c.name.full}</h2>
+            <div class="text-secondary mb-3">${c.name.native || ''}</div>
+            <div class="row row-cols-2 row-cols-sm-3 g-2 mb-3">
+              ${stat('Gender', c.gender)}
+              ${stat('Age', c.age)}
+              ${stat('Birthday', d.month && months[d.month - 1] + ' ' + d.day)}
+              ${stat('Blood type', c.bloodType)}
+              ${stat('Favourites', '♥ ' + c.favourites)}
+            </div>
+            <p class="small" style="white-space: pre-line;">${about || 'No description available.'}</p>
+          </div>
+        </div>`;
+      bootstrap.Modal.getOrCreateInstance($('modal')).show();
+    }
+
+    load();
+  </script>
 </body>
+
 </html>
