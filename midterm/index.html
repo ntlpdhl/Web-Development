@@ -42,17 +42,6 @@
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-3" id="list"></div>
   </div>
 
-  <div class="modal fade" id="modal" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content border-warning border-2 rounded-4">
-        <div class="modal-header border-0 pb-0">
-          <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body" id="modalBody"></div>
-      </div>
-    </div>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
@@ -63,19 +52,22 @@
 
     const colors = { MAIN: 'warning', SUPPORTING: 'info', BACKGROUND: 'secondary' };
     const label = r => r[0] + r.slice(1).toLowerCase();
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     const QUERY = `
       query ($page: Int) { a: Media(id: 20) { ...F } b: Media(id: 1735) { ...F } }
       fragment F on Media {
         characters(page: $page, perPage: 25, sort: [ROLE, FAVOURITES_DESC]) {
           pageInfo { hasNextPage }
-          edges { role node { id name { full native } image { large } description gender age
-                  dateOfBirth { month day } bloodType favourites } }
+          edges { role node { id name { full native } image { large } favourites } }
         }
       }`;
 
     let all = [], shown = [], cat = '', page = 1;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.get('page')) {
+      page = parseInt(urlParams.get('page'));
+    }
 
     $('chips').innerHTML = ['All', 'MAIN', 'SUPPORTING', 'BACKGROUND'].map(r =>
       `<button class="chip btn btn-outline-${colors[r] || 'light'} rounded-pill px-4 ${r == 'All' ? 'active' : ''}"
@@ -124,52 +116,27 @@
 
     function render() {
       const q = $('q').value.trim().toLowerCase();
-      const found = all.filter(c => (!cat || c.role == cat) && (c.name.full + ' ' + (c.name.native || '')).toLowerCase().includes(q));
+      const found = all.filter(c => (!cat || c.role == cat) && (c.name.full).toLowerCase().includes(q));
       const last = Math.max(1, Math.ceil(found.length / PER_PAGE));
       shown = found.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
-      $('list').innerHTML = shown.map((c, i) => `
+      $('list').innerHTML = shown.map((c) => `
         <div class="col">
-          <div class="card anime h-100 shadow-sm" role="button" onclick="view(${i})">
-            <div class="ratio bg-body-tertiary" style="--bs-aspect-ratio: 140%;">
-              <img src="${c.image.large}" class="card-img-top object-fit-cover" loading="lazy" alt="">
+          <a href="view.html?id=${c.id}&page=${page}" class="text-decoration-none">
+            <div class="card anime h-100 shadow-sm position-relative">
+              <div class="ratio bg-body-tertiary" style="--bs-aspect-ratio: 140%;">
+                <img src="${c.image.large}" class="card-img-top object-fit-cover" loading="lazy" alt="">
+              </div>
+              <span class="badge text-bg-${colors[c.role]} position-absolute top-0 start-0 m-2">${label(c.role)}</span>
+              <div class="card-body p-2"><div class="small fw-medium text-body">${c.name.full}</div></div>
             </div>
-            <span class="badge text-bg-${colors[c.role]} position-absolute top-0 start-0 m-2">${label(c.role)}</span>
-            <div class="card-body p-2"><div class="small fw-medium">${c.name.full}</div></div>
-          </div>
+          </a>
         </div>`).join('') || '<p class="w-100 text-center text-secondary p-5">No shinobi on file under that name.</p>';
 
       $('count').textContent = found.length + ' shinobi on file';
       $('pageInfo').textContent = `Page ${page} of ${last}`;
       $('prevItem').classList.toggle('disabled', page <= 1);
       $('nextItem').classList.toggle('disabled', page >= last);
-    }
-
-    function view(i) {
-      const c = shown[i], d = c.dateOfBirth || {};
-      const about = (c.description || '').replace(/~!.*?!~/gs, '').replace(/<br\s*\/?>/g, '\n')
-        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/https?:\/\/\S+/g, '').replace(/__|\*\*|<[^>]+>/g, '').trim();
-      const stat = (k, v) => v ? `<div class="col"><div class="bg-body-tertiary rounded p-2 small"><div class="text-secondary" style="font-size:.7rem">${k}</div>${v}</div></div>` : '';
-      $('modalBody').innerHTML = `
-        <div class="row g-4">
-          <div class="col-md-4 text-center">
-            <img src="${c.image.large}" class="img-fluid rounded-3" alt="">
-          </div>
-          <div class="col-md-8">
-            <span class="badge text-bg-${colors[c.role]}">${label(c.role)}</span>
-            <h2 class="text-warning title-font mt-2 mb-0">${c.name.full}</h2>
-            <div class="text-secondary mb-3">${c.name.native || ''}</div>
-            <div class="row row-cols-2 row-cols-sm-3 g-2 mb-3">
-              ${stat('Gender', c.gender)}
-              ${stat('Age', c.age)}
-              ${stat('Birthday', d.month && months[d.month - 1] + ' ' + d.day)}
-              ${stat('Blood type', c.bloodType)}
-              ${stat('Favourites', '♥ ' + c.favourites)}
-            </div>
-            <p class="small" style="white-space: pre-line;">${about || 'No description available.'}</p>
-          </div>
-        </div>`;
-      bootstrap.Modal.getOrCreateInstance($('modal')).show();
     }
 
     load();
