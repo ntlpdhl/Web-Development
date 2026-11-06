@@ -97,7 +97,7 @@
     }
 
     const load = async () => {
-      $('list').innerHTML = '<div class="col-12 text-center p-5"><div class="spinner-border text-warning"></div><div class="text-secondary mt-3">Pulling files from the archive...</div></div>';
+      $('list').innerHTML = '<div class="w-100 text-center p-5"><div class="spinner-border text-warning"></div><div class="text-secondary mt-3">Pulling files from the archive...</div></div>';
       try {
         const map = new Map();
         for (let p = 1, more = true; more; p++) {
@@ -118,7 +118,7 @@
         all = [...map.values()].sort((x, y) => order[x.role] - order[y.role] || y.favourites - x.favourites);
         render();
       } catch {
-        $('list').innerHTML = '<p class="text-center text-secondary p-5">Could not load data. Check your internet then refresh the page.</p>';
+        $('list').innerHTML = '<p class="w-100 text-center text-secondary p-5">Could not load data. Check your internet then refresh the page.</p>';
       }
     };
 
@@ -137,7 +137,7 @@
             <span class="badge text-bg-${colors[c.role]} position-absolute top-0 start-0 m-2">${label(c.role)}</span>
             <div class="card-body p-2"><div class="small fw-medium">${c.name.full}</div></div>
           </div>
-        </div>`).join('') || '<p class="text-center text-secondary p-5">No shinobi on file under that name.</p>';
+        </div>`).join('') || '<p class="w-100 text-center text-secondary p-5">No shinobi on file under that name.</p>';
 
       $('count').textContent = found.length + ' shinobi on file';
       $('pageInfo').textContent = `Page ${page} of ${last}`;
